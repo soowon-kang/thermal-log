@@ -119,7 +119,7 @@ class BackgroundTask extends AsyncTask<Double, Void, String> {
         }
         try {
             // Log.i("cpuFreq", Integer.toString(SystemUtils.getCPUFrequencyCurrent()));
-            data[idx++] = SystemUtils.getCPUFrequencyCurrent();
+            data[idx++] = SystemUtils.getCPUFrequencyCurrent(0);
         } catch (SystemUtils.SystemUtilsException e) {
             e.printStackTrace();
         }

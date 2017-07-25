@@ -233,7 +233,7 @@ public class TempService extends Service {
         }
         try {
             // Log.i("cpuFreq", Integer.toString(SystemUtils.getCPUFrequencyCurrent()));
-            data[idx++] = Integer.toString(SystemUtils.getCPUFrequencyCurrent());
+            data[idx++] = Integer.toString(SystemUtils.getCPUFrequencyCurrent(0));
         } catch (SystemUtils.SystemUtilsException e) {
             e.printStackTrace();
         }

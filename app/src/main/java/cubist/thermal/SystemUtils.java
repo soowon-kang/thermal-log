@@ -176,8 +176,15 @@ public class SystemUtils {
      * @return in kiloHertz.
      * @throws SystemUtilsException
      */
-    public static int getCPUFrequencyCurrent() throws SystemUtilsException {
-        return SystemUtils.readSystemFileAsInt("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq");
+    public static int getCPUFrequencyCurrent(int k) throws SystemUtilsException {
+        int f = 0;
+        try {
+            f = SystemUtils.readSystemFileAsInt(
+                    String.format("/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq", k));
+        } catch (SystemUtils.SystemUtilsException e) {
+            // e.printStackTrace();
+        }
+        return f;
     }
 
     /**
