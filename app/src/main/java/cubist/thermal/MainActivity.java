@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Log.i("action", "temp");
+                getFPSandCpuFrequency();
                 //BackgroundTask bgTask = new BackgroundTask();
                 //bgTask.execute(mBatInfoReceiver.get_temp());
                 // Log.i("batTemp", Double.toString(mBatInfoReceiver.get_temp()));
@@ -86,5 +87,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /** # sypark.
+     * This is a test function for Nexus5X.
+     * You can get cpu frequency of each cpu by using SystemUtils.getCPUFrequencyCurrent(k)
+     *
+     * To get the FPS info, refer to here.
+     * https://developer.android.com/training/testing/performance.html
+     * http://www.kmshack.kr/2013/12/android-dumpsys-gfxinfo%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%94%84%EB%A0%88%EC%9E%84-%EC%B8%A1%EC%A0%95/
+     *
+     */
+    private Double[] getFPSandCpuFrequency() {
+        try {
+            Log.i("cpuFreq0", Integer.toString(SystemUtils.getCPUFrequencyCurrent(0)));
+            Log.i("cpuFreq1", Integer.toString(SystemUtils.getCPUFrequencyCurrent(1)));
+            Log.i("cpuFreq2", Integer.toString(SystemUtils.getCPUFrequencyCurrent(2)));
+            Log.i("cpuFreq3", Integer.toString(SystemUtils.getCPUFrequencyCurrent(3)));
+            Log.i("cpuFreq4", Integer.toString(SystemUtils.getCPUFrequencyCurrent(4)));
+            Log.i("cpuFreq5", Integer.toString(SystemUtils.getCPUFrequencyCurrent(5)));
+        } catch (SystemUtils.SystemUtilsException e) {
+            e.printStackTrace();
+        }
+        Double[] data = new Double[7];
+
+        return data;
     }
 }

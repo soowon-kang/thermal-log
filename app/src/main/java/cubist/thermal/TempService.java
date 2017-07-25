@@ -68,6 +68,10 @@ public class TempService extends Service {
         super.onDestroy();
     }
 
+    /** # sypark.
+     * This is original file logging method.
+     * Make another one by referring this.
+     */
     private void logging() {
         thread = new Thread(new Runnable() {
             @Override
