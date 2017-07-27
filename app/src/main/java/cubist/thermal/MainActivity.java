@@ -7,22 +7,24 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Choreographer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.codemonkeylabs.fpslibrary.FrameDataCallback;
+import com.codemonkeylabs.fpslibrary.TinyDancer;
+
 public class MainActivity extends AppCompatActivity {
 
     // public BatteryInfoReceiver mBatInfoReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),
                         TempService.class);
                 startService(intent);
+                startService(new Intent(getApplicationContext(), FPSService.class));
                 Log.d("service", "start");
             }
         });
@@ -62,9 +65,34 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),
                         TempService.class);
                 stopService(intent);
+                stopService(new Intent(getApplicationContext(), FPSService.class));
                 Log.d("service", "stop");
             }
         });
+        //TinyDancer.create().show(this);
+
+        //alternatively
+        /*
+        TinyDancer.create()
+                .redFlagPercentage(.1f) // set red indicator for 10%....different from default
+                .startingXPosition(200)
+                .startingYPosition(600)
+                .show(this);
+        */
+        //you can add a callback to get frame times and the calculated
+        //number of dropped frames within that window
+        Log.d("DEBUG", "It's new");
+        /*
+        TinyDancer.create()
+                .addFrameDataCallback(new FrameDataCallback() {
+                    @Override
+                    public void doFrame(long previousFrameNS, long currentFrameNS, int droppedFrames) {
+                        //collect your stats here
+                        Log.d("DEBUG", "frame got");
+                    }
+                })
+                .show(this);
+        */
     }
 
     @Override

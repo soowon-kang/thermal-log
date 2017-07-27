@@ -23,7 +23,10 @@
             android:name="TempService"
             android:permission="">
         </service>
-
+        <service
+            android:name=".FPSService"
+            android:permission="">
+        </service>
     </application>
 
 </manifest>
