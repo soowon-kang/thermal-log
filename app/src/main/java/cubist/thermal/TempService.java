@@ -73,10 +73,12 @@ public class TempService extends Service {
      * Make another one by referring this.
      */
     private void logging() {
+        Log.d("TAG", "logging called");
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (running) {
+                    Log.d("TAG", "Thread Running");
                     // do sth
                     // rxBytes = android.net.TrafficStats.getTotalRxBytes();
                     // txBytes = android.net.TrafficStats.getTotalTxBytes();
@@ -94,6 +96,7 @@ public class TempService extends Service {
         try {
             final String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
                     "/Thermal/";
+            Log.d("DirPath", dirPath);
             final File dir = new File(dirPath);
             if (!dir.exists()) {
                 if (!dir.mkdirs()) {
@@ -133,6 +136,7 @@ public class TempService extends Service {
 
     public void writeLogFile(String log) {
         try {
+            Log.d("TAG", "writeLogFile");
             if (currFileStream != null) {
                 final String msg = log;
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ssZ", Locale.getDefault());
@@ -146,6 +150,7 @@ public class TempService extends Service {
 
     public void closeLogFile() {
         try {
+            Log.d("TAG", "closeLogFile");
             if (currFileStream != null) {
                 currFileStream.close();
             }
@@ -164,8 +169,9 @@ public class TempService extends Service {
      *         usage in percentage.
      */
     private String[] getCpuUsageStatistic() {
-
+        Log.d("TAG", "getCpuUsageStatistics");
         String[] temp = executeTop();
+        Log.d("TAG", "getCpuUsageStatistics2");
         String tempString = temp[0];
         int size = 0;
 
@@ -187,7 +193,6 @@ public class TempService extends Service {
             cpu0[i] = myString[i];
         }
         // ex) User 31%, System 10%, IOW 0%, IRQ 0%
-
         tempString = temp[1];
         tempString = tempString.replaceAll("\\+", "=");
         tempString = tempString.trim();
@@ -200,7 +205,6 @@ public class TempService extends Service {
         }
         cpu1[myString.length-1] = myString[myString.length-1].trim();
         // ex) User 211 + Nice 0 + Sys 156 + Idle 1424 + IOW 0 + IRQ 7 + SIRQ 3 = 1801
-
         tempString = temp[2];
         size += 4;
         String[] cpu2 = new String[4];
@@ -253,6 +257,7 @@ public class TempService extends Service {
         } catch (SystemUtils.SystemUtilsException e) {
             e.printStackTrace();
         }
+        Log.d("TAG", "getCpuUsageStatistics6");
         return data;
     }
 

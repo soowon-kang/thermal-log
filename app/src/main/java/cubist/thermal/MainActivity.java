@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),
                         TempService.class);
                 startService(intent);
-                startService(new Intent(getApplicationContext(), FPSService.class));
+                //startService(new Intent(getApplicationContext(), FPSService.class));
                 Log.d("service", "start");
             }
         });
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),
                         TempService.class);
                 stopService(intent);
-                stopService(new Intent(getApplicationContext(), FPSService.class));
+                //stopService(new Intent(getApplicationContext(), FPSService.class));
                 Log.d("service", "stop");
             }
         });

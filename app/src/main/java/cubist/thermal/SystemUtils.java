@@ -169,7 +169,10 @@ public class SystemUtils {
      * @throws SystemUtilsException
      */
     public static int getCPUTemperatureCurrent() throws SystemUtilsException {
-        return SystemUtils.readSystemFileAsInt("/sys/class/thermal/thermal_zone9/temp");
+        /*for Galaxy S7*/
+        return SystemUtils.readSystemFileAsInt("/sys/class/thermal/thermal_zone1/temp");
+        /*for Nexus 5X*/
+        //return SystemUtils.readSystemFileAsInt("/sys/class/thermal/thermal_zone9/temp");
     }
 
     /**
